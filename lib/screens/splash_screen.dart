@@ -11,25 +11,36 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   late Timer _timer;
+  double _opacity = 0.0;
 
   @override
   void initState() {
     super.initState();
-    
+
     // Set status bar style to match background color
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(
-        statusBarColor: Color(0xFFB74747), // Maroon color
+        statusBarColor: Color(0xFFB74141), // Terracotta color
         statusBarIconBrightness: Brightness.light,
       ),
     );
-    
-    // Navigate to HomeScreen after 3 seconds
+
+    // Fade in animation
+    Future.delayed(const Duration(milliseconds: 500), () {
+      setState(() {
+        _opacity = 1.0;
+      });
+    });
+
+    // Navigate to login after 3 seconds
     _timer = Timer(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const HomeScreen()),
-      );
+      if (mounted) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            Navigator.pushReplacementNamed(context, '/login');
+          }
+        });
+      }
     });
   }
 
@@ -42,52 +53,55 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Background color set to solid maroon
-      backgroundColor: const Color(0xFFB74747),
-      body: Center(
-        // Center widget to center content horizontally and vertically
-        child: Column(
-          // MainAxisSize.min to make column wrap its children tightly
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            // Logo placeholder
-            Image.asset(
-              'assets/images/logo.png',
-              width: 150,
-              height: 150,
-              fit: BoxFit.contain,
-            ),
-            const SizedBox(height: 20),
-            // Tagline text with specified styling
-            const Text(
-              'Learning Management System',
-              style: TextStyle(
-                fontFamily: 'SansSerif', // Default sans serif font
-                fontSize: 16, // Font size 16px
-                fontWeight: FontWeight.w400, // Font weight 400
-                color: Colors.white, // Pure white color
-                letterSpacing: 0.5, // Slight letter spacing for modern look
+      // Background color set to solid terracotta
+      backgroundColor: const Color(0xFFB74141),
+      body: AnimatedOpacity(
+        opacity: _opacity,
+        duration: const Duration(seconds: 1),
+        child: Center(
+          // Center widget to center content horizontally and vertically
+          child: Column(
+            // MainAxisSize.min to make column wrap its children tightly
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Logo with book icon above CeLOE text
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  const Text(
+                    'CeLOE',
+                    style: TextStyle(
+                      fontSize: 48,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Icon(
+                      Icons.menu_book, // Open book icon
+                      color: Colors.white,
+                      size: 24,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              // Tagline text with specified styling
+              const Text(
+                'Learning Management System',
+                style: TextStyle(
+                  fontSize: 14, // Smaller font size
+                  fontWeight: FontWeight.normal,
+                  color: Colors.white,
+                  letterSpacing: 1.2, // Proportional letter spacing
+                ),
+                textAlign: TextAlign.center, // Center aligned
+              ),
+            ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-        backgroundColor: const Color(0xFFB74747),
-      ),
-      body: const Center(
-        child: Text('Welcome to Home Screen'),
       ),
     );
   }
