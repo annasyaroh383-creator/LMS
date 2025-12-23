@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: MediaQuery.of(context).size.height / 3,
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/university_bg.jpg'),
+                    image: AssetImage('assets/images/university_bg.jpg'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -84,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   const Text(
                     'Login',
                     style: TextStyle(
+                      fontFamily: 'Poppins',
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
                       color: Colors.black,
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextField(
                     controller: _emailController,
                     decoration: const InputDecoration(
-                      hintText: 'Email',
+                      hintText: 'Email 365',
                       hintStyle: TextStyle(fontSize: 16, color: Colors.grey),
                       border: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey),
@@ -103,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: Color(0xFFB21312)),
                       ),
                     ),
                   ),
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide(color: Colors.grey),
                       ),
                       focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red),
+                        borderSide: BorderSide(color: Color(0xFFB21312)),
                       ),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -147,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.pushReplacementNamed(context, '/main');
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFB74747),
+                        backgroundColor: const Color(0xFFB21312),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25),
                         ),
@@ -175,6 +176,23 @@ class _LoginPageState extends State<LoginPage> {
                         'Belum punya akun? Daftar',
                         style: TextStyle(
                           color: Color(0xFFB74747),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  // Help text
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/help');
+                      },
+                      child: const Text(
+                        'Bantuan ?',
+                        style: TextStyle(
+                          color: Color(0xFFB21312),
                           fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),

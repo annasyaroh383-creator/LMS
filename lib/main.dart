@@ -3,6 +3,8 @@ import 'screens/splash_screen.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/auth/register_screen.dart';
 import 'screens/main_screen.dart';
+import 'screens/help_screen.dart';
+import 'screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +27,8 @@ class MyApp extends StatelessWidget {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginPage(),
         '/register': (context) => const RegisterScreen(),
-        '/main': (context) => const MainScreen(),
+        '/help': (context) => const HelpScreen(),
+        '/main': (context) => const HomeScreen(),
       },
     );
   }

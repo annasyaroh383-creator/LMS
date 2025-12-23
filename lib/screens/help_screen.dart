@@ -13,12 +13,14 @@ class _HelpScreenState extends State<HelpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
           isIndonesian ? 'Bantuan' : 'Help',
           style: const TextStyle(
             fontFamily: 'Poppins',
             fontWeight: FontWeight.bold,
+            color: Colors.white,
           ),
         ),
         backgroundColor: const Color(0xFFB74747),
@@ -43,90 +45,84 @@ class _HelpScreenState extends State<HelpScreen> {
             // Content
             Text(
               isIndonesian
-                  ? 'Akses Khusus Dosen dan Mahasiswa Telkom University'
-                  : 'Special Access for Lecturers and Students of Telkom University',
+                  ? 'Instruksi Login Akun Microsoft Office 365'
+                  : 'Microsoft Office 365 Account Login Instructions',
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),
             const SizedBox(height: 20),
             Text(
               isIndonesian
-                  ? 'Sistem ini dirancang khusus untuk memberikan akses mudah kepada dosen dan mahasiswa Telkom University dalam mengelola pembelajaran online.'
-                  : 'This system is designed specifically to provide easy access for lecturers and students of Telkom University in managing online learning.',
+                  ? 'Untuk mengakses sistem ini, Anda perlu menggunakan akun Microsoft Office 365 yang telah disediakan oleh universitas.'
+                  : 'To access this system, you need to use the Microsoft Office 365 account provided by the university.',
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 16,
+                fontSize: 14,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Text(
-              isIndonesian ? 'Instruksi Login' : 'Login Instructions',
+              isIndonesian ? 'Langkah-langkah login:' : 'Login steps:',
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 18,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),
             const SizedBox(height: 10),
             Text(
               isIndonesian
-                  ? 'Gunakan Akun Microsoft Office 365 Anda untuk login. Username menggunakan format iGracias diikuti dengan domain universitas.'
-                  : 'Use your Microsoft Office 365 account to log in. Username uses the iGracias format followed by the university domain.',
+                  ? '1. Buka halaman login aplikasi.\n2. Masukkan email Microsoft Office 365 Anda.\n3. Klik "Selanjutnya" dan masukkan kata sandi.\n4. Ikuti proses verifikasi dua faktor jika diperlukan.'
+                  : '1. Open the application login page.\n2. Enter your Microsoft Office 365 email.\n3. Click "Next" and enter your password.\n4. Follow the two-factor verification process if required.',
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 16,
+                fontSize: 14,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             Text(
               isIndonesian
-                  ? 'Peringatan Kata Sandi Kuat'
-                  : 'Strong Password Warning',
+                  ? 'Pastikan Anda menggunakan koneksi internet yang stabil dan browser yang didukung untuk pengalaman login yang optimal.'
+                  : 'Make sure you use a stable internet connection and a supported browser for the optimal login experience.',
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                height: 1.5,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              isIndonesian
-                  ? 'Pastikan kata sandi Anda kuat dan aman. Hindari menggunakan kata sandi yang mudah ditebak.'
-                  : 'Make sure your password is strong and secure. Avoid using easily guessable passwords.',
-              style: const TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 16,
+                fontSize: 14,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),
             const SizedBox(height: 40),
 
-            // Contact Helpdesk
+            // Contact Section
             Text(
-              isIndonesian ? 'Kontak Helpdesk' : 'Helpdesk Contact',
+              isIndonesian ? 'Kontak' : 'Contact',
               style: const TextStyle(
                 fontFamily: 'Poppins',
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
                 height: 1.5,
               ),
             ),
             const SizedBox(height: 20),
             _buildContactItem(
-              isIndonesian ? 'Email' : 'Mail',
-              'infoceloe@telkomuniversity.ac.id',
+              isIndonesian ? 'Mail' : 'Mail',
+              'support@university.edu',
               Icons.email,
             ),
             const SizedBox(height: 10),
-            _buildContactItem('WhatsApp', '+62 821-1666-3563', Icons.phone),
+            _buildContactItem('Whatsapp', '+62 812-3456-7890', Icons.phone),
           ],
         ),
       ),
@@ -147,14 +143,15 @@ class _HelpScreenState extends State<HelpScreen> {
             label,
             style: TextStyle(
               fontFamily: 'Poppins',
-              fontSize: 16,
+              fontSize: 15,
               fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
+              color: Colors.black,
             ),
           ),
           if (isActive)
             Container(
               margin: const EdgeInsets.only(top: 5),
-              height: 2,
+              height: 4,
               width: 30,
               color: const Color(0xFFB74747),
             ),
@@ -166,19 +163,27 @@ class _HelpScreenState extends State<HelpScreen> {
   Widget _buildContactItem(String title, String value, IconData icon) {
     return Row(
       children: [
-        Icon(icon, color: const Color(0xFFB74747)),
+        Icon(icon, color: Colors.black, size: 20),
         const SizedBox(width: 10),
         Text(
           '$title: ',
           style: const TextStyle(
             fontFamily: 'Poppins',
-            fontSize: 16,
+            fontSize: 14,
             fontWeight: FontWeight.bold,
+            color: Colors.black,
           ),
         ),
-        Text(
-          value,
-          style: const TextStyle(fontFamily: 'Poppins', fontSize: 16),
+        Expanded(
+          child: Text(
+            value,
+            style: const TextStyle(
+              fontFamily: 'Poppins',
+              fontSize: 14,
+              color: Colors.black,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
         ),
       ],
     );

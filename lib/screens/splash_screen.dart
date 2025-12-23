@@ -32,8 +32,8 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    // Navigate to login after 3 seconds
-    _timer = Timer(const Duration(seconds: 3), () {
+    // Navigate to login after 1 second
+    _timer = Timer(const Duration(milliseconds: 1000), () {
       if (mounted) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (mounted) {
