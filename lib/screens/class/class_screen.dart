@@ -14,7 +14,6 @@ class _ClassScreenState extends State<ClassScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-
         centerTitle: true,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -179,11 +178,14 @@ class _ClassScreenState extends State<ClassScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: LinearProgressIndicator(
-                          value: 0.89,
-                          backgroundColor: Colors.grey[300],
-                          valueColor: const AlwaysStoppedAnimation<Color>(
-                            Color(0xFFB21312),
+                        child: Container(
+                          height: 4,
+                          child: LinearProgressIndicator(
+                            value: 0.89,
+                            backgroundColor: Colors.grey[300],
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                              Color(0xFFB21312),
+                            ),
                           ),
                         ),
                       ),

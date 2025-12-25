@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NotificationsScreen extends StatefulWidget {
-  const NotificationsScreen({super.key});
+class AnnouncementScreen extends StatefulWidget {
+  const AnnouncementScreen({super.key});
 
   @override
-  State<NotificationsScreen> createState() => _NotificationsScreenState();
+  State<AnnouncementScreen> createState() => _AnnouncementScreenState();
 }
 
-class _NotificationsScreenState extends State<NotificationsScreen> {
+class _AnnouncementScreenState extends State<AnnouncementScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         backgroundColor: const Color(0xFFB74747),
         foregroundColor: Colors.white,
         title: const Text(
-          'Notifikasi',
+          'Pengumuman',
           style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
         ),
         elevation: 0,
@@ -27,35 +27,25 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                'Notifikasi Terbaru',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppins',
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 20),
               Expanded(
                 child: ListView(
                   children: [
-                    _buildNotificationItem(
+                    _buildAnnouncementItem(
                       'Maintenance Pra UAS Semester Genap 2020/2021',
                       'By Admin Celoe - Rabu, 2 Juni 2021, 10:45',
                     ),
                     const SizedBox(height: 15),
-                    _buildNotificationItem(
+                    _buildAnnouncementItem(
                       'Pengumuman Kelas Pemrograman Mobile',
                       'By Admin Celoe - Senin, 1 Juni 2021, 14:30',
                     ),
                     const SizedBox(height: 15),
-                    _buildNotificationItem(
+                    _buildAnnouncementItem(
                       'Deadline Tugas Sistem Operasi',
                       'By Admin Celoe - Minggu, 30 Mei 2021, 23:59',
                     ),
                     const SizedBox(height: 15),
-                    _buildNotificationItem(
+                    _buildAnnouncementItem(
                       'Nilai Tugas Desain Antarmuka & UX',
                       'By Admin Celoe - Jumat, 28 Mei 2021, 16:20',
                     ),
@@ -69,7 +59,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     );
   }
 
-  Widget _buildNotificationItem(String title, String subtitle) {
+  Widget _buildAnnouncementItem(String title, String subtitle) {
     return Container(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
       decoration: BoxDecoration(
