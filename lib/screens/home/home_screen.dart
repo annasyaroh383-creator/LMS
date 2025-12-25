@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../class/class_screen.dart';
+import '../notifications/notifications_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -14,7 +16,27 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
-    // Handle navigation logic here
+
+    // Navigate to different screens based on selected index
+    switch (index) {
+      case 0:
+        // Stay on home screen
+        break;
+      case 1:
+        // Navigate to Class Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ClassScreen()),
+        );
+        break;
+      case 2:
+        // Navigate to Notifications Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NotificationsScreen()),
+        );
+        break;
+    }
   }
 
   @override

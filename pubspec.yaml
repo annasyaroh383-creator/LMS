@@ -61,6 +61,7 @@ flutter:
     - assets/images/
     - assets/logo_celoe.png
     - assets/building_image.png
+    - assets/images/ic_speaker.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
