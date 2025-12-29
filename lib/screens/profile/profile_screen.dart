@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../class/class_screen.dart';
+import '../notifications/notifications_screen.dart';
+import '../home/home_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -10,6 +13,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  int _selectedIndex = 0;
 
   @override
   void initState() {
@@ -21,6 +25,32 @@ class _ProfileScreenState extends State<ProfileScreen>
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        // Navigate to Home Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+        break;
+      case 1:
+        // Navigate to Class Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const ClassScreen()),
+        );
+        break;
+      case 2:
+        // Navigate to Notifications Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NotificationsScreen()),
+        );
+        break;
+    }
   }
 
   @override
@@ -35,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen>
             expandedHeight: 260,
             pinned: false,
             leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back, color: Colors.white),
               onPressed: () => Navigator.pop(context),
             ),
             flexibleSpace: FlexibleSpaceBar(
@@ -50,7 +80,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                   ),
                   SizedBox(height: 12),
                   Text(
-                    'DANDY CANDRA PRATAMA',
+                    'ROHIMATUL M',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 18,
@@ -148,6 +178,8 @@ class _ProfileScreenState extends State<ProfileScreen>
         backgroundColor: const Color(0xFFB74141),
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white70,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
@@ -164,26 +196,36 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   Widget _aboutMeTab() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Informasi User',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Informasi User',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+
+            _buildInfoItem('Email address', 'user@example.com'),
+            _buildInfoItem('Program Studi', 'Teknik Informatika'),
+            _buildInfoItem('Fakultas', 'Fakultas Teknik'),
+
+            const SizedBox(height: 20),
+
+            const Text(
+              'Aktivitas Login',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 10),
+
+            _buildInfoItem('First access to site', '2023-01-01 10:00'),
+            _buildInfoItem('Last access to site', '2023-12-29 12:00'),
+          ],
         ),
-        const SizedBox(height: 10),
-        _buildInfoItem('Email address', 'user@example.com'),
-        _buildInfoItem('Program Studi', 'Teknik Informatika'),
-        _buildInfoItem('Fakultas', 'Fakultas Teknik'),
-        const SizedBox(height: 20),
-        const Text(
-          'Aktivitas Login',
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 10),
-        _buildInfoItem('First access to site', '2023-01-01 10:00'),
-        _buildInfoItem('Last access to site', '2023-12-29 12:00'),
-      ],
+      ),
     );
   }
 

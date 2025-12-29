@@ -16,7 +16,7 @@ class _ClassScreenState extends State<ClassScreen> {
         backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.white),
+        iconTheme: const IconThemeData(color: Colors.red),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
