@@ -103,7 +103,9 @@ class _ClassScreenState extends State<ClassScreen> {
             () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const ClassScreen()),
+                MaterialPageRoute(
+                  builder: (context) => const DashboardClassScreen(),
+                ),
               );
             },
           ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'kuiz1_screen.dart';
+import 'kuiz3_screen.dart';
 
 class Kuiz2Screen extends StatefulWidget {
   const Kuiz2Screen({super.key});
@@ -234,7 +235,12 @@ class _Kuiz2ScreenState extends State<Kuiz2Screen> {
                   Expanded(
                     child: ElevatedButton(
                       onPressed: () {
-                        // TODO: navigate to next question
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Kuiz3Screen(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey.shade300,
