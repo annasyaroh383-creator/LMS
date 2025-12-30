@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import '../home/home_screen.dart';
+import '../notifications/notifications_screen.dart';
+import 'dashboard/dashboard_class_screen.dart';
 
 class ClassScreen extends StatefulWidget {
   const ClassScreen({super.key});
@@ -8,12 +11,37 @@ class ClassScreen extends StatefulWidget {
 }
 
 class _ClassScreenState extends State<ClassScreen> {
+  final int _selectedIndex = 1; // Kelas Saya aktif
+
+  void _onItemTapped(int index) {
+    switch (index) {
+      case 0:
+        // Navigate to Home Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const HomeScreen()),
+        );
+        break;
+      case 1:
+        // Navigate to Class Screen (current)
+        // Already here
+        break;
+      case 2:
+        // Navigate to Notifications Screen
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const NotificationsScreen()),
+        );
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Color(0xFFB74141),
         centerTitle: true,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
@@ -40,6 +68,24 @@ class _ClassScreenState extends State<ClassScreen> {
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color(0xFFB74141),
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white70,
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            label: 'Kelas Saya',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notifikasi',
+          ),
+        ],
+      ),
     );
   }
 
@@ -54,6 +100,14 @@ class _ClassScreenState extends State<ClassScreen> {
             '2021/2',
             'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA D4SM-42-03 [ADY]',
             'D4SM-42-03',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DashboardClassScreen(),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 15),
           _buildClassItem(
@@ -113,18 +167,21 @@ class _ClassScreenState extends State<ClassScreen> {
     String imagePath,
     String year,
     String courseName,
-    String classCode,
-  ) {
+    String classCode, [
+    VoidCallback? onTap,
+  ]) {
     return GestureDetector(
-      onTap: () {
-        // TODO: Navigate to detailed class view
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Membuka kelas: $courseName'),
-            duration: const Duration(seconds: 1),
-          ),
-        );
-      },
+      onTap:
+          onTap ??
+          () {
+            // Default action
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Membuka kelas: $courseName'),
+                duration: const Duration(seconds: 1),
+              ),
+            );
+          },
       child: Container(
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
