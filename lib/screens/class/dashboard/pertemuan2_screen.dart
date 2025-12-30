@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../kuiz/kuiz_screen.dart';
+import '../tugas/page_tugas_screen.dart';
 
 class Pertemuan2Screen extends StatefulWidget {
   const Pertemuan2Screen({super.key});
@@ -214,52 +215,65 @@ class _Pertemuan2ScreenState extends State<Pertemuan2Screen>
                         ),
                       ),
                     ),
-                    Card(
-                      color: Colors.white,
-                      margin: const EdgeInsets.only(bottom: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: Colors.grey.shade300, width: 1),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.description,
-                              size: 40,
-                              color: Colors.grey.shade600,
-                            ),
-                            const SizedBox(width: 15),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Tugas 01 – UI Android Mobile Game',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    'Buatlah desain antarmuka untuk game FPS Android dengan tema zombie apocalypse. Sertakan wireframe, mockup, dan prototype interaktif.',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey.shade600,
-                                    ),
-                                  ),
-                                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const PageTugasScreen(),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        color: Colors.white,
+                        margin: const EdgeInsets.only(bottom: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.description,
+                                size: 40,
+                                color: Colors.grey.shade600,
                               ),
-                            ),
-                            Icon(
-                              Icons.check_circle,
-                              color: Colors.grey,
-                              size: 24,
-                            ),
-                          ],
+                              const SizedBox(width: 15),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Tugas 01 – UI Android Mobile Game',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      'Buatlah desain antarmuka untuk game FPS Android dengan tema zombie apocalypse. Sertakan wireframe, mockup, dan prototype interaktif.',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Icon(
+                                Icons.check_circle,
+                                color: Colors.grey,
+                                size: 24,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
