@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'kuiz_screen.dart';
 import 'review_kuiz_screen.dart';
 
 class ReviewJawabanScreen extends StatefulWidget {
@@ -134,7 +135,12 @@ class _ReviewJawabanScreenState extends State<ReviewJawabanScreen> {
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    // Submit answers
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const KuizScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
