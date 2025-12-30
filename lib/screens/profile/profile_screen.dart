@@ -156,12 +156,13 @@ class _ProfileScreenState extends State<ProfileScreen>
                     alignment: Alignment.bottomRight,
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        // Logout logic
+                        Navigator.pushReplacementNamed(context, '/login');
                       },
                       icon: const Icon(Icons.logout),
                       label: const Text('Log Out'),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,
+                        backgroundColor: Colors.redAccent,
+                        foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),

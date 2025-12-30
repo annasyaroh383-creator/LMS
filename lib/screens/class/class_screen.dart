@@ -13,11 +13,20 @@ class _ClassScreenState extends State<ClassScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red,
         centerTitle: true,
         elevation: 0,
-        iconTheme: const IconThemeData(color: Colors.red),
+        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text(
+          'Kelas Saya',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
       ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
