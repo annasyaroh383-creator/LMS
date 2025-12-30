@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../kuiz/kuiz_screen.dart';
 
 class Pertemuan2Screen extends StatefulWidget {
   const Pertemuan2Screen({super.key});
@@ -151,52 +152,65 @@ class _Pertemuan2ScreenState extends State<Pertemuan2Screen>
                 ListView(
                   padding: const EdgeInsets.all(20),
                   children: [
-                    Card(
-                      color: Colors.white,
-                      margin: const EdgeInsets.only(bottom: 15),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        side: BorderSide(color: Colors.grey.shade300, width: 1),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.quiz,
-                              size: 40,
-                              color: Colors.grey.shade600,
-                            ),
-                            const SizedBox(width: 15),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Quiz Review 01',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 5),
-                                  Text(
-                                    'Tenggat Waktu : 26 Februari 2021 23:59 WIB',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      color: Colors.grey.shade600,
-                                    ),
-                                  ),
-                                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const KuizScreen(),
+                          ),
+                        );
+                      },
+                      child: Card(
+                        color: Colors.white,
+                        margin: const EdgeInsets.only(bottom: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                          side: BorderSide(
+                            color: Colors.grey.shade300,
+                            width: 1,
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.quiz,
+                                size: 40,
+                                color: Colors.grey.shade600,
                               ),
-                            ),
-                            Icon(
-                              Icons.check_circle,
-                              color: Colors.green,
-                              size: 24,
-                            ),
-                          ],
+                              const SizedBox(width: 15),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Quiz Review 01',
+                                      style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    Text(
+                                      'Tenggat Waktu : 26 Februari 2021 23:59 WIB',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        color: Colors.grey.shade600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Icon(
+                                Icons.check_circle,
+                                color: Colors.green,
+                                size: 24,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

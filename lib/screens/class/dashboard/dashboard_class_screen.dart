@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../home/home_screen.dart';
 import '../../notifications/notifications_screen.dart';
 import '../class_screen.dart';
+import '../kuiz/kuiz_screen.dart';
 import 'pertemuan1_screen.dart';
 import 'pertemuan2_screen.dart';
 
@@ -257,80 +258,92 @@ class _DashboardClassScreenState extends State<DashboardClassScreen>
             itemCount: assignments.length,
             itemBuilder: (context, index) {
               final assignment = assignments[index];
-              return Card(
-                color: Colors.white,
-                margin: const EdgeInsets.only(bottom: 15),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Stack(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            assignment['icon'],
-                            size: 40,
-                            color: Colors.grey.shade600,
+              return InkWell(
+                onTap: assignment['type'] == 'QUIZ'
+                    ? () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const KuizScreen(),
                           ),
-                          const SizedBox(width: 15),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: Text(
-                                    assignment['type'],
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold,
+                        );
+                      }
+                    : null,
+                child: Card(
+                  color: Colors.white,
+                  margin: const EdgeInsets.only(bottom: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15),
+                    child: Stack(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              assignment['icon'],
+                              size: 40,
+                              color: Colors.grey.shade600,
+                            ),
+                            const SizedBox(width: 15),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Text(
+                                      assignment['type'],
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 8),
-                                Text(
-                                  assignment['title'],
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                  const SizedBox(height: 8),
+                                  Text(
+                                    assignment['title'],
+                                    style: const TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black,
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  assignment['deadline'],
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: Colors.grey.shade600,
+                                  const SizedBox(height: 5),
+                                  Text(
+                                    assignment['deadline'],
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.grey.shade600,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Positioned(
-                        top: 0,
-                        right: 0,
-                        child: Icon(
-                          Icons.check_circle,
-                          color: assignment['completed']
-                              ? Colors.green
-                              : Colors.grey,
-                          size: 24,
+                          ],
                         ),
-                      ),
-                    ],
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: Icon(
+                            Icons.check_circle,
+                            color: assignment['completed']
+                                ? Colors.green
+                                : Colors.grey,
+                            size: 24,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               );
