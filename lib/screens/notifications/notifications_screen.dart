@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../announcement/announcement_screen.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -13,109 +14,99 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFB74747),
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         title: const Text(
           'Notifikasi',
-          style: TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
         ),
         elevation: 0,
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Notifikasi Terbaru',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Poppins',
-                  color: Colors.black,
-                ),
-              ),
-              const SizedBox(height: 20),
-              Expanded(
-                child: ListView(
-                  children: [
-                    _buildNotificationItem(
-                      'Maintenance Pra UAS Semester Genap 2020/2021',
-                      'By Admin Celoe - Rabu, 2 Juni 2021, 10:45',
-                    ),
-                    const SizedBox(height: 15),
-                    _buildNotificationItem(
-                      'Pengumuman Kelas Pemrograman Mobile',
-                      'By Admin Celoe - Senin, 1 Juni 2021, 14:30',
-                    ),
-                    const SizedBox(height: 15),
-                    _buildNotificationItem(
-                      'Deadline Tugas Sistem Operasi',
-                      'By Admin Celoe - Minggu, 30 Mei 2021, 23:59',
-                    ),
-                    const SizedBox(height: 15),
-                    _buildNotificationItem(
-                      'Nilai Tugas Desain Antarmuka & UX',
-                      'By Admin Celoe - Jumat, 28 Mei 2021, 16:20',
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
         ),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(20),
+        children: [
+          _buildNotificationItem(
+            Icons.assignment,
+            'Anda telah mengirimkan pengajuan tugas untuk Pengumpulan Laporan Akhir Assessment 3 (Tugas Besar)',
+            '3 Hari 9 Jam Yang Lalu',
+            () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AnnouncementScreen(),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 15),
+          _buildNotificationItem(
+            Icons.quiz,
+            'Kuis Pemrograman Mobile telah tersedia. Batas waktu pengumpulan adalah 2 hari lagi.',
+            '1 Hari 5 Jam Yang Lalu',
+          ),
+          const SizedBox(height: 15),
+          _buildNotificationItem(
+            Icons.announcement,
+            'Pengumuman: Kelas Sistem Operasi akan dimulai besok pukul 08:00.',
+            '5 Jam Yang Lalu',
+          ),
+          const SizedBox(height: 15),
+          _buildNotificationItem(
+            Icons.grade,
+            'Nilai tugas Desain Antarmuka & UX telah diumumkan. Silakan cek di portal.',
+            '2 Hari Yang Lalu',
+          ),
+          const SizedBox(height: 15),
+          _buildNotificationItem(
+            Icons.event,
+            'Deadline pengumpulan tugas besar Basis Data adalah besok pukul 23:59.',
+            '6 Jam Yang Lalu',
+          ),
+        ],
       ),
     );
   }
 
-  Widget _buildNotificationItem(String title, String subtitle) {
-    return Container(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 5, bottom: 5),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 30,
-            height: 30,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: const DecorationImage(
-                image: AssetImage('assets/images/ic_speaker.png'),
-                fit: BoxFit.cover,
+  Widget _buildNotificationItem(
+    IconData icon,
+    String title,
+    String time, [
+    VoidCallback? onTap,
+  ]) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+        child: Row(
+          children: [
+            Icon(icon, size: 24, color: Colors.grey.shade600),
+            const SizedBox(width: 15),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    time,
+                    style: TextStyle(fontSize: 14, color: Colors.grey.shade600),
+                  ),
+                ],
               ),
             ),
-          ),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    color: Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontSize: 13,
-                    fontFamily: 'Poppins',
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
